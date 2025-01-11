@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Yield Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+    <h1>Crop Yield Predictor</h1>
+    <form method="post" enctype="multipart/form-data">
+        <h3>Soil Analysis</h3>
+        <label for="pH">pH:</label>
+        <input type="text" id="pH" name="pH" required><br><br>
+        <label for="moisture">Moisture:</label>
+        <input type="text" id="moisture" name="moisture" required><br><br>
+        <label for="nutrients">Nutrients:</label>
+        <input type="text" id="nutrients" name="nutrients" required><br><br>
+        
+        <h3>Image Analysis</h3>
+        <input type="file" name="image" id="image"><br><br>
+
+        <input type="submit" value="Analyze and Predict">
+    </form>
+
+    {% if soil_report %}
+        <h2>Soil Report:</h2>
+        <ul>
+        {% for key, value in soil_report.items() %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if prediction is not none %}
+        <h2>Predicted Yield: {{ prediction }}</h2>
+    {% endif %}
+
+    <div id="cropHealth"></div>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Yield Predictor</title>
+</head>
+<body>
+    <h1>Crop Yield Predictor</h1>
+    <form method="post">
+        <label for="pH">pH:</label>
+        <input type="text" id="pH" name="pH" required><br><br>
+        <label for="moisture">Moisture:</label>
+        <input type="text" id="moisture" name="moisture" required><br><br>
+        <label for="nutrients">Nutrients:</label>
+        <input type="text" id="nutrients" name="nutrients" required><br><br>
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction is not none %}
+        <h2>Predicted Yield: {{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>
