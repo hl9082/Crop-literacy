@@ -34,7 +34,7 @@ model = RandomForestRegressor()
 model.fit(X_train, y_train)
 
 # Save the model
-joblib.dump(model, 'model/random_forest_model.pkl')
+joblib.dump(model, 'random_forest_model.pkl')
 
 # Optionally, you can evaluate the model's performance
 
